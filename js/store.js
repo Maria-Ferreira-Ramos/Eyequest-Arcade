@@ -26,6 +26,7 @@
       lessons: {},         // lesson id -> best stars
       sessions: [],        // every finished lesson
       badges: {},          // badge id -> day earned
+      storySeen: {},       // story scene id -> day first watched
       created: Date.now(),
     };
   }

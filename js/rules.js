@@ -83,7 +83,7 @@
   // the stronger eye is covered, so the lazy eye does the work.
   const UNITS = [
     {
-      id: "u1", title: "Warm up", blurb: "Learn the games with both eyes open.",
+      id: "u1", title: "Firefly Meadow", blurb: "Both eyes open while you learn the games.",
       lessons: [
         ["Meet the firefly", firefly("both", 0.16, 2)],
         ["Star snapping", stars("both", 2.0)],
@@ -96,7 +96,7 @@
       ],
     },
     {
-      id: "u2", title: "Solo eye", blurb: "Cover your stronger eye and let the lazy eye lead.",
+      id: "u2", title: "Crystal Caves", blurb: "Cover your stronger eye and let your lazy eye lead.",
       lessons: [
         ["Solo firefly", firefly("solo", 0.18, 3)],
         ["Solo stars", stars("solo", 1.8)],
@@ -109,7 +109,7 @@
       ],
     },
     {
-      id: "u3", title: "Sharpen up", blurb: "Smaller detail, busier crowds and quicker flashes.",
+      id: "u3", title: "Whispering Library", blurb: "Solo eye, with smaller detail, busier crowds and quicker flashes.",
       lessons: [
         ["Crowded letters", odd("solo", 26)],
         ["Look-alikes", hunt("solo", 20, 38)],
@@ -122,7 +122,7 @@
       ],
     },
     {
-      id: "u4", title: "Team up", blurb: "Bring both eyes back together, with fainter detail.",
+      id: "u4", title: "Star Observatory", blurb: "Both eyes working together, with fainter detail.",
       lessons: [
         ["Busy sky", stars("both", 1.2)],
         ["Back together", firefly("both", 0.28, 5)],
