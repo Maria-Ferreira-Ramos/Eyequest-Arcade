@@ -274,18 +274,16 @@ function injectDefs(){
 var ORDER=['meadow','caves','library','obs'];
 var TITLES={meadow:'Firefly Meadow',caves:'Crystal Caves',library:'Whispering Library',obs:'Star Observatory'};
 var NAMES=[['firefly','meadow'],['crystal','caves'],['whisper','library'],['observatory','obs'],['star','obs'],['shape','caves']];
-function lessonWorld(){
-  var m=/#\/lesson\/([^?]+)/.exec(location.hash);
-  if(!m)return null;
-  var n=/l(\d+)$/.exec(m[1]);
-  return n?ORDER[(parseInt(n[1],10)-1)%4]:null;
+function unitShift(){
+  var m=/#\/lesson\/u(\d+)l/.exec(location.hash);
+  return m?(parseInt(m[1],10)-1)%4:0;
 }
 function detect(t){
   t=(t||'').trim().toLowerCase();
   if(!t)return null;
-  for(var i=0;i<NAMES.length;i++)if(t.indexOf(NAMES[i][0])>-1)return NAMES[i][1];
-  var h=0;for(var k=0;k<t.length;k++)h=(h*31+t.charCodeAt(k))>>>0;
-  return ORDER[h%4];
+  var base=2;
+  for(var i=0;i<NAMES.length;i++)if(t.indexOf(NAMES[i][0])>-1){base=ORDER.indexOf(NAMES[i][1]);break}
+  return ORDER[(base+unitShift())%4];
 }
 var last=null;
 function art(box,world){
@@ -326,13 +324,16 @@ function gameLine(panel,title,name){
 function sync(){
   var intro=document.getElementById('intro'),title=document.getElementById('intro-title');
   if(intro&&title){
-    var raw=title.textContent,bad=!raw||/something went wrong/i.test(raw);
-    var w=bad?null:(lessonWorld()||detect(raw));
+    var raw=title.textContent,isWT=false,k;
+    for(k in TITLES)if(TITLES[k]===raw)isWT=true;
+    if(isWT&&intro.dataset.game)raw=intro.dataset.game;else intro.dataset.game=raw;
+    var bad=!raw||/something went wrong/i.test(raw);
+    var w=bad?null:detect(raw);
     if(!intro.hidden)last=w;
     art(intro,w);
     if(w){
       var wt=TITLES[w],panel=intro.querySelector('.panel');
-      if(raw!==wt){gameLine(panel,title,raw);title.textContent=wt}
+      if(title.textContent!==wt){gameLine(panel,title,raw);title.textContent=wt}
       split(title);
     }
   }
