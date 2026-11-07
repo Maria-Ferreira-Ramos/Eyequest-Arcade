@@ -92,8 +92,8 @@ bg:function(s,r){
   var bk=grp(s,{filter:'url(#paint)'});
   for(i=0;i<110;i++)el('circle',{cx:r()*W,cy:40+r()*480,r:20+r()*46,fill:r()<.5?'#4b2a8a':'#6a3aa8',opacity:.4},bk);
   el('ellipse',{cx:900,cy:300,rx:200,ry:300,fill:'#c8a8ff',opacity:.16,filter:'url(#blur40)'},s);
-  el('rect',{x:872,y:90,width:56,height:390,fill:'url(#c-fall)'},s);
-  el('rect',{x:850,y:78,width:100,height:24,fill:'#2a1668'},s);
+  el('rect',{x:872,y:0,width:56,height:480,fill:'url(#c-fall)'},s);
+  el('ellipse',{cx:900,cy:30,rx:90,ry:60,fill:'#150838',opacity:.9,filter:'url(#blur18)'},s);
   el('path',{d:'M0 520 C200 480 420 500 640 490 C860 478 1060 500 1280 515 V720 H0Z',fill:'url(#c-pool)'},s);
   caveList().forEach(function(e){if(!e.front)crystal(s,e)});
   var wl=grp(s,{filter:'url(#paint)'});
@@ -274,16 +274,13 @@ function injectDefs(){
 var ORDER=['meadow','caves','library','obs'];
 var TITLES={meadow:'Firefly Meadow',caves:'Crystal Caves',library:'Whispering Library',obs:'Star Observatory'};
 var NAMES=[['firefly','meadow'],['crystal','caves'],['whisper','library'],['observatory','obs'],['star','obs'],['shape','caves']];
-function unitShift(){
-  var m=/#\/lesson\/u(\d+)l/.exec(location.hash);
-  return m?(parseInt(m[1],10)-1)%4:0;
-}
 function detect(t){
   t=(t||'').trim().toLowerCase();
   if(!t)return null;
-  var base=2;
-  for(var i=0;i<NAMES.length;i++)if(t.indexOf(NAMES[i][0])>-1){base=ORDER.indexOf(NAMES[i][1]);break}
-  return ORDER[(base+unitShift())%4];
+  var m=/#\/lesson\/u(\d+)l/.exec(location.hash);
+  if(m)return ORDER[(parseInt(m[1],10)-1)%4];
+  for(var i=0;i<NAMES.length;i++)if(t.indexOf(NAMES[i][0])>-1)return NAMES[i][1];
+  return 'library';
 }
 var last=null;
 function art(box,world){
