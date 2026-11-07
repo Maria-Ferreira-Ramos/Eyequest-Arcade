@@ -130,7 +130,7 @@ body:has(.stage-page) .ret, .stage-page .ret { display: none; }
   display: flex; align-items: center; justify-content: space-between;
   padding: 22px max(20px, calc((100vw - 1100px) / 2));
 }
-body:not(:has(.hero)) .site-nav { display: none; }
+body:not(:has(.hero)):not(.about-page) .site-nav { display: none; }
 .sn-logo {
   font-family: 'Dela Gothic One', sans-serif; font-size: 1.3rem; text-decoration: none;
   color: #dffffe; text-shadow: 0 0 6px var(--cyan), 0 0 18px var(--cyan);
@@ -227,4 +227,52 @@ body[data-route="setup"] .eye { top: 40%; }
 .bar i { background: linear-gradient(90deg, var(--brand), var(--coral)); }
 .result-stars svg.on { filter: drop-shadow(0 0 10px rgba(255, 179, 71, .75)); }
 .tally div { border: 1.5px solid var(--line); background: rgba(255, 255, 255, .04); }
+
+/* 13. About page */
+body.about-page #iris-bg { position: fixed; opacity: .16; }
+.about { max-width: 760px; margin: 0 auto; padding: calc(96px + 5vh) 20px 80px; }
+.about h1 {
+  margin: 0 0 20px; font-size: clamp(2.4rem, 8vw, 4.4rem); line-height: 1; color: #dffffe;
+  text-shadow: 0 0 6px var(--cyan), 0 0 22px var(--cyan), 0 0 46px var(--violet);
+}
+.about .lede { font-size: 1.3rem; line-height: 1.5; max-width: 34em; margin: 0 0 56px; }
+.about .pull {
+  font-family: 'Dela Gothic One', sans-serif; font-size: clamp(1.5rem, 4.4vw, 2.5rem); line-height: 1.15;
+  margin: 0 0 64px; text-shadow: none; background: linear-gradient(90deg, #ff4fa8, #ff7a59, #ffc15e);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.about section { margin: 0 0 56px; }
+.about h2 { font-weight: 800; font-size: 1.7rem; line-height: 1.2; margin: 0 0 14px; }
+.about p, .about li { font-size: 1.1rem; line-height: 1.65; max-width: 38em; }
+.about p { text-shadow: 0 0 14px #000; }
+.about ul { padding-left: 1.2em; margin: 0 0 1em; }
+.about li { margin-bottom: 6px; }
+.about a { color: var(--cyan); }
+.about .trial { margin: 28px 0 32px; max-width: 38em; }
+.about .trial h3 { font-size: 1.1rem; margin: 0 0 4px; }
+.about .trial .sub { color: var(--muted); font-size: .98rem; margin: 0 0 14px; }
+.about .bar-row { display: grid; grid-template-columns: 13em 1fr; align-items: center; gap: 12px; margin: 8px 0; }
+.about .bar-row .name { font-size: .98rem; font-weight: 700; }
+.about .bar-track { height: 32px; background: rgba(255, 255, 255, .08); border-radius: 8px; overflow: hidden; }
+.about .bar-fill {
+  height: 100%; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px;
+  font-weight: 800; font-size: .95rem; color: #15040f; white-space: nowrap; border-radius: 8px;
+}
+.about .bar-fill.game { background: linear-gradient(90deg, var(--brand), var(--coral)); }
+.about .bar-fill.std { background: linear-gradient(90deg, #1b9a9a, var(--cyan)); }
+.about .note-line { margin: 10px 0 0; }
+.about .fine { color: var(--muted); font-size: .95rem; }
+.about .card {
+  max-width: 38em; border: 1.5px solid transparent;
+  background:
+    linear-gradient(rgba(8, 4, 22, .86), rgba(8, 4, 22, .86)) padding-box,
+    linear-gradient(120deg, var(--brand), var(--violet), var(--cyan)) border-box;
+}
+.about .card p:last-child { margin-bottom: 0; }
+.about .about-cta { margin: 0; }
+.about .btn { color: #15040f; text-decoration: none; text-shadow: none; }
+.about .sources li { font-size: 1rem; }
+@media (max-width: 560px) {
+  .about .bar-row { grid-template-columns: 1fr; gap: 4px; }
+}
 
