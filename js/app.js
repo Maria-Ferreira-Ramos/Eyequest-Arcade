@@ -852,7 +852,7 @@
       ${storageWarning()}
       <div class="versions">
         <a class="card version" href="#/learn">
-          <div class="version-art arcade-art">${icons.mascot(110)}</div>
+          <div class="version-art arcade-art">${icons.mascot(110)}<span class="neon-eye" aria-hidden="true"></span></div>
           <div>
             <h2>EyeQuest Arcade</h2>
             <p class="muted">Play with your mouse and keyboard. Short games on a lesson path, with Blink and a sky full of stars to relight. No camera needed.</p>

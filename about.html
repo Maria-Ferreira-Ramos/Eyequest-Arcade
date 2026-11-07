@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About EyeQuest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Bricolage+Grotesque:wght@400;600;800&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/design.css">
+</head>
+<body class="about-page">
+  <!-- Liquid iris background (decorative). Animated by js/iris.js -->
+  <div id="iris-bg" aria-hidden="true">
+    <svg id="eye" class="eye" viewBox="-500 -500 1000 1000">
+      <defs>
+        <filter id="liq" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.006 0.009" numOctaves="2" seed="7" result="n">
+            <animate attributeName="baseFrequency" dur="26s" repeatCount="indefinite" values="0.006 0.009;0.012 0.006;0.006 0.009"/>
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="70" xChannelSelector="R" yChannelSelector="G" result="d"/>
+          <feColorMatrix in="d" type="hueRotate" values="0">
+            <animate attributeName="values" dur="30s" repeatCount="indefinite" values="0;35;0;-20;0"/>
+          </feColorMatrix>
+        </filter>
+        <radialGradient id="ig">
+          <stop offset="0" stop-color="#000"/><stop offset=".36" stop-color="#000"/>
+          <stop offset=".38" stop-color="#ff5a36"/><stop offset=".52" stop-color="#ff3d9a"/>
+          <stop offset=".74" stop-color="#8a4dff"/><stop offset=".92" stop-color="#35e0e0"/>
+          <stop offset="1" stop-color="#35e0e0" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <g filter="url(#liq)">
+        <g id="tex">
+          <circle r="470" fill="url(#ig)"/>
+          <circle class="f f1" r="320" fill="none" stroke="#fff" stroke-opacity=".32" stroke-width="300" stroke-dasharray="2 11"/>
+          <circle class="f f2" r="320" fill="none" stroke="#000" stroke-opacity=".4" stroke-width="300" stroke-dasharray="1.5 7"/>
+          <circle class="f f3" r="320" fill="none" stroke="#ffd36b" stroke-opacity=".45" stroke-width="300" stroke-dasharray="1 23"/>
+        </g>
+        <circle r="466" fill="none" stroke="#000" stroke-opacity=".7" stroke-width="40"/>
+        <g id="pupil">
+          <circle r="170" fill="#000"/>
+          <circle r="176" fill="none" stroke="#ff9ad0" stroke-opacity=".6" stroke-width="3"/>
+          <ellipse cx="-70" cy="-80" rx="36" ry="22" fill="#fff" fill-opacity=".85" transform="rotate(-30 -70 -80)"/>
+          <circle cx="60" cy="80" r="9" fill="#fff" fill-opacity=".5"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div id="ret" class="ret" aria-hidden="true"></div>
+
+  <header id="site-nav" class="site-nav">
+    <a class="sn-logo" href="index.html">EyeQuest</a>
+    <nav class="sn-links" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="index.html#/new" class="sn-cta">Get started</a>
+    </nav>
+  </header>
+
+  <main class="about">
+    <h1>About EyeQuest</h1>
+    <p class="lede">EyeQuest is a set of short games for people with lazy eye. This page explains what lazy eye is, what eye doctors usually recommend, and where games fit in.</p>
+
+    <p class="pull">Lazy eye isn't weak eye muscles. It's how the brain handles the picture from the weaker eye.</p>
+
+    <section>
+      <h2>What is lazy eye?</h2>
+      <p>Lazy eye, or amblyopia, is reduced vision in one eye. The eye usually looks normal. The problem is that the eye and the brain don't work together properly, so the brain favors the stronger eye and the weaker one gets used less. In the US it affects about 2 to 3 of every 100 children, and it usually starts in infancy or early childhood.</p>
+      <p>Three things commonly cause it:</p>
+      <ul>
+        <li>Eyes that point in different directions (strabismus)</li>
+        <li>A big difference in prescription between the two eyes</li>
+        <li>Less often, another eye condition such as a cataract</li>
+      </ul>
+      <p>Left untreated in childhood, it often continues into adulthood.</p>
+    </section>
+
+    <section>
+      <h2>What eye doctors usually recommend</h2>
+      <p>Treatment is planned by an eye doctor. It often starts with glasses, if the prescription needs correcting. From there, the usual approach is to make the weaker eye do more of the work: a patch over the stronger eye, or atropine drops that blur it.</p>
+      <p>A National Eye Institute study found that atropine works about as well as patching, and may make it easier to keep going. Both can work, but only when they actually get done, every day, for weeks to months.</p>
+    </section>
+
+    <section>
+      <h2>What about eye exercises?</h2>
+      <p>Some people are also given eye exercises, like following a pencil as it moves slowly toward the nose. These "pencil push-ups" are mostly used for eye-teaming problems such as convergence insufficiency, where the eyes struggle to turn inward together for close work. That is a different condition from lazy eye, although people often use "lazy eye" for both.</p>
+      <p>In a National Eye Institute-funded trial of 221 children aged 9 to 17 with convergence insufficiency, about 75% of those who did office-based therapy had fewer symptoms after 12 weeks. About 43% of those who completed pencil push-ups at home alone improved the same way. Exercises can help, and they work best when they are done regularly and correctly.</p>
+      <p>EyeQuest doesn't replace these exercises. Ask your eye doctor which condition you have and which exercises, if any, are right for you.</p>
+    </section>
+
+    <section>
+      <h2>Why a game?</h2>
+      <p>The hardest part of treatment is sticking with it. A game can help with that, but only if it's fun enough to come back to. In one large trial, children were given a binocular iPad game to play for an hour a day. Many lost interest within days or weeks, and only about 1 in 5 completed most of the play they were assigned. A game has to earn its place in someone's day.</p>
+      <p>That's how EyeQuest is built. Lessons take two to four minutes. The path gets harder as you go. Streaks and daily goals reward showing up. There are two ways to play: the Arcade needs just your mouse and keyboard, and the Eye Tracker lets you play with your eyes through your webcam. Warm-up lessons ask you to keep both eyes open.</p>
+    </section>
+
+    <section>
+      <h2>What the research says</h2>
+      <p>Digital games are an active area of research, and the results so far are mixed. Here are two large trials with children.</p>
+
+      <div class="trial">
+        <h3>A dichoptic therapy plus glasses, children aged 4 to 7</h3>
+        <p class="sub">105 children, 12 weeks. Dichoptic means each eye sees a different version of the picture, so the brain has to use both.</p>
+        <div class="bar-row"><span class="name">Therapy + glasses</span><div class="bar-track"><div class="bar-fill game" style="width:90%">1.8 lines</div></div></div>
+        <div class="bar-row"><span class="name">Glasses alone</span><div class="bar-track"><div class="bar-fill std" style="width:40%">0.8 lines</div></div></div>
+        <p class="note-line">The therapy group gained about one more line than glasses alone.</p>
+      </div>
+
+      <div class="trial">
+        <h3>A binocular game vs patching, children aged 5 to 12</h3>
+        <p class="sub">385 children, 16 weeks.</p>
+        <div class="bar-row"><span class="name">Binocular game, 1 hour a day</span><div class="bar-track"><div class="bar-fill game" style="width:52.5%">1.05 lines</div></div></div>
+        <div class="bar-row"><span class="name">Patching, 2 hours a day</span><div class="bar-track"><div class="bar-fill std" style="width:67.5%">1.35 lines</div></div></div>
+        <p class="note-line">Patching did slightly better, and the game could not be shown to be as good.</p>
+      </div>
+
+      <p class="fine">Bars show the average improvement in the weaker eye's vision. One line is one row on an eye chart.</p>
+      <p>Put together: games can help, but they aren't a proven replacement for what your eye doctor prescribes. Results depend on the specific game and on people actually playing it. Research in adults is still limited.</p>
+    </section>
+
+    <section>
+      <h2>What EyeQuest is, and isn't</h2>
+      <div class="card">
+        <p><strong>EyeQuest supports your eye care, but doesn't replace it.</strong> It isn't a medical device and can't diagnose or treat amblyopia. We haven't tested it in a clinical trial. The 0 to 100 scores in your eye report come from how you play. They show your own progress over time, not the result of an eye exam.</p>
+        <p>See an eye doctor, and keep following any patching or glasses plan you've been given.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Stop and get help if</h2>
+      <p>Stop playing if you get a headache, eye pain or double vision. If double vision or a change in your vision comes on suddenly, get medical care right away.</p>
+    </section>
+
+    <section class="sources">
+      <h2>Sources</h2>
+      <ul>
+        <li><a href="https://nei.nih.gov/sites/default/files/health-pdfs/FactsAbout_AMBLYOPIA_2015.pdf">Facts About Amblyopia</a>, National Eye Institute</li>
+        <li><a href="https://www.aao.org/editors-choice/officebased-therapy-may-be-more-effective-than-ath">Convergence Insufficiency Treatment Trial summary</a>, American Academy of Ophthalmology</li>
+        <li><a href="https://www.aao.org/eyenet/article/binocular-ipad-game-vs-part-time-patching-amblyopi">Binocular iPad Game vs. Part-Time Patching for Amblyopia in Children</a>, American Academy of Ophthalmology EyeNet</li>
+        <li><a href="https://eye.hms.harvard.edu/publications/randomized-controlled-trial-dichoptic-digital-therapeutic-amblyopia">Randomized Controlled Trial of a Dichoptic Digital Therapeutic for Amblyopia</a>, Harvard Medical School</li>
+      </ul>
+    </section>
+
+    <p class="about-cta"><a class="btn" href="index.html#/new">Get started</a></p>
+  </main>
+
+  <script src="js/iris.js"></script>
+</body>
+</html>
+
