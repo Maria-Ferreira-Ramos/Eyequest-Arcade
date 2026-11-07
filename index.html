@@ -4,9 +4,52 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EyeQuest Arcade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Bricolage+Grotesque:wght@400;600;800&display=swap">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/design.css">
 </head>
 <body>
+  <!-- Liquid iris background (decorative). Animated by js/iris.js -->
+  <div id="iris-bg" aria-hidden="true">
+    <svg id="eye" class="eye" viewBox="-500 -500 1000 1000">
+      <defs>
+        <filter id="liq" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.006 0.009" numOctaves="2" seed="7" result="n">
+            <animate attributeName="baseFrequency" dur="26s" repeatCount="indefinite" values="0.006 0.009;0.012 0.006;0.006 0.009"/>
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="70" xChannelSelector="R" yChannelSelector="G" result="d"/>
+          <feColorMatrix in="d" type="hueRotate" values="0">
+            <animate attributeName="values" dur="28s" repeatCount="indefinite" values="0;360"/>
+          </feColorMatrix>
+        </filter>
+        <radialGradient id="ig">
+          <stop offset="0" stop-color="#000"/><stop offset=".36" stop-color="#000"/>
+          <stop offset=".38" stop-color="#ff5a36"/><stop offset=".52" stop-color="#ff3d9a"/>
+          <stop offset=".74" stop-color="#8a4dff"/><stop offset=".92" stop-color="#35e0e0"/>
+          <stop offset="1" stop-color="#35e0e0" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <g filter="url(#liq)">
+        <g id="tex">
+          <circle r="470" fill="url(#ig)"/>
+          <circle class="f f1" r="320" fill="none" stroke="#fff" stroke-opacity=".32" stroke-width="300" stroke-dasharray="2 11"/>
+          <circle class="f f2" r="320" fill="none" stroke="#000" stroke-opacity=".4" stroke-width="300" stroke-dasharray="1.5 7"/>
+          <circle class="f f3" r="320" fill="none" stroke="#ffd36b" stroke-opacity=".45" stroke-width="300" stroke-dasharray="1 23"/>
+        </g>
+        <circle r="466" fill="none" stroke="#000" stroke-opacity=".7" stroke-width="40"/>
+        <g id="pupil">
+          <circle r="170" fill="#000"/>
+          <circle r="176" fill="none" stroke="#ff9ad0" stroke-opacity=".6" stroke-width="3"/>
+          <ellipse cx="-70" cy="-80" rx="36" ry="22" fill="#fff" fill-opacity=".85" transform="rotate(-30 -70 -80)"/>
+          <circle cx="60" cy="80" r="9" fill="#fff" fill-opacity=".5"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div id="ret" class="ret" aria-hidden="true"></div>
+
   <div id="app"></div>
   <noscript><p style="padding:24px">EyeQuest Arcade needs JavaScript turned on.</p></noscript>
   <script src="js/rules.js"></script>
@@ -14,5 +57,6 @@
   <script src="js/games.js"></script>
   <script src="js/charts.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/iris.js"></script>
 </body>
 </html>
