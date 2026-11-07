@@ -61,29 +61,39 @@ h1 { font-family: 'Dela Gothic One', 'Bricolage Grotesque', sans-serif; font-wei
 /* 4. Welcome screen: big neon wordmark over the iris */
 .hero { padding-top: 10vh; }
 .hero::before {
-  content: "EYE QUEST";
+  content: "EYE\A QUEST";
+  white-space: pre;
+  text-align: center;
   font-family: 'Dela Gothic One', sans-serif;
   font-size: clamp(2.4rem, 9.4vw, 7rem);
-  line-height: 1;
+  line-height: .95;
   letter-spacing: -1px;
-  background: linear-gradient(90deg, #ffe3d9 0 36%, #dffffe 36%);
+  background: linear-gradient(180deg, #ffe3d9 0 50%, #dffffe 50%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   filter: drop-shadow(0 0 14px rgba(255, 61, 154, .75)) drop-shadow(0 0 44px rgba(53, 224, 224, .5));
 }
-.hero .mascot, .hero .blink-mascot { display: none; }
+.hero .mascot, .hero .blink-mascot, .narrow .mascot, .narrow .blink-mascot { display: none; }
 .hero h1 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(1.4rem, 3.2vw, 2rem); }
-.hero h1, .hero p { text-shadow: 0 0 18px #000, 0 0 6px #000; }
+/* frosted glass behind the text so it stays readable over the iris */
+.hero h1, .hero p {
+  background: rgba(1, 1, 8, .58);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px; padding: 10px 18px;
+}
+.hero h1 { text-wrap: balance; }
+.hero p { text-wrap: pretty; }
 
 /* 5. Liquid iris layer */
 #iris-bg {
   position: absolute; top: 0; left: 0; right: 0; height: 100vh;
   overflow: hidden; pointer-events: none; z-index: -1;
   opacity: .18; transition: opacity .4s;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent);
+  mask-image: linear-gradient(#000 55%, transparent);
 }
 body:has(.hero) #iris-bg { opacity: 1; }
-#iris-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, var(--bg)); }
 .eye {
   position: absolute; left: 50%; top: 30%;
   width: min(130vw, 105vh); aspect-ratio: 1;
@@ -98,6 +108,8 @@ body:has(.hero) #iris-bg { opacity: 1; }
 .f3 { animation: rot 200s linear infinite; }
 body:not(:has(.hero)) .f { animation-play-state: paused; }
 
+input[type=text]:focus, input[type=password]:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(53, 224, 224, .25); }
+
 /* gaze reticle that follows the cursor on the welcome screen */
 .ret {
   position: fixed; left: -18px; top: -18px; width: 36px; height: 36px;
@@ -111,3 +123,108 @@ body:not(:has(.hero)) .f { animation-play-state: paused; }
 /* 6. Lessons keep their own full-screen stage: no iris, no reticle */
 body:has(.stage-page) #iris-bg, .stage-page #iris-bg,
 body:has(.stage-page) .ret, .stage-page .ret { display: none; }
+
+/* 7. Top navigation on the welcome screen only (other screens have their own top bar) */
+.site-nav {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 6;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px max(20px, calc((100vw - 1100px) / 2));
+}
+body:not(:has(.hero)) .site-nav { display: none; }
+.sn-logo {
+  font-family: 'Dela Gothic One', sans-serif; font-size: 1.3rem; text-decoration: none;
+  color: #dffffe; text-shadow: 0 0 6px var(--cyan), 0 0 18px var(--cyan);
+}
+.sn-links { display: flex; align-items: center; gap: 30px; }
+.sn-links a { color: var(--ink); text-decoration: none; font-weight: 700; font-size: 1rem; }
+.sn-links a:hover { color: var(--cyan); }
+.sn-links .sn-cta {
+  background: linear-gradient(90deg, var(--brand), var(--coral)); color: #15040f;
+  border-radius: 999px; padding: 10px 24px; font-weight: 800;
+}
+.sn-links .sn-cta:hover { color: #15040f; filter: brightness(1.12); }
+.sn-logo:focus-visible, .sn-links a:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; border-radius: 8px; }
+.hero { padding-top: calc(80px + 6vh); }
+@media (max-width: 640px) { .sn-links a:not(.sn-cta) { display: none; } }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* 8. Get started / name screen: the iris sits behind the form and looks at the field */
+body[data-route="new"] #iris-bg { opacity: 1; }
+/* pupil sits behind the title (dark = readable) and visibly turns toward the field */
+body[data-route="new"] .eye { top: 25%; width: min(120vw, 100vh); }
+body[data-route="new"] .narrow { padding-top: 7vh; }
+body[data-route="new"] h1 {
+  text-align: center; font-size: clamp(2rem, 6vw, 3rem); color: #dffffe;
+  text-shadow: 0 0 6px var(--cyan), 0 0 22px var(--cyan), 0 0 50px var(--violet), 0 0 30px rgba(0, 0, 0, .9);
+}
+body[data-route="new"] .card {
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(rgba(8, 4, 22, .82), rgba(8, 4, 22, .82)) padding-box,
+    linear-gradient(120deg, var(--brand), var(--violet), var(--cyan)) border-box;
+  box-shadow: 0 0 44px rgba(138, 77, 255, .3);
+}
+body[data-route="new"] input[type=text] { font-size: 1.25rem; padding: 16px 18px; background: rgba(1, 1, 8, .75); }
+body[data-route="new"] .narrow a:not(.btn) { color: var(--cyan); font-weight: 700; }
+body[data-route="new"] .narrow p { text-shadow: 0 0 12px #000; }
+
+/* 9. Setup screen: fixed iris behind the form, neon Blink avatar, glowing choices */
+body[data-route="setup"] #iris-bg { position: fixed; opacity: .42; }
+body[data-route="setup"] .eye { top: 40%; }
+.mascot-note::before {
+  content: ""; flex: none; width: 56px; height: 56px; border-radius: 50%;
+  background:
+    radial-gradient(circle at 40% 38%, #fff 0 5%, transparent 6%),
+    radial-gradient(circle at 50% 50%, #000 0 26%, transparent 27%),
+    conic-gradient(var(--coral), var(--brand), var(--violet), var(--cyan), var(--coral));
+  box-shadow: 0 0 22px rgba(255, 61, 154, .55);
+  animation: blink 5s infinite;
+}
+@keyframes blink { 0%, 92%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.08); } }
+.mascot-note .bubble { border: 1.5px solid rgba(255, 61, 154, .5); }
+.choice span { transition: border-color .15s; }
+.choice:hover span { border-color: var(--cyan); }
+.choice input:checked + span { box-shadow: 0 3px 0 var(--brand), 0 0 26px rgba(255, 61, 154, .35); }
+
+/* 10. Retire the old purple mascot everywhere; the neon eye replaces it */
+.mascot, .blink-mascot, .mascot-note svg, .logo svg { display: none !important; }
+.logo::before {
+  content: ""; flex: none; width: 30px; height: 30px; border-radius: 50%;
+  background:
+    radial-gradient(circle at 40% 38%, #fff 0 5%, transparent 6%),
+    radial-gradient(circle at 50% 50%, #000 0 26%, transparent 27%),
+    conic-gradient(var(--coral), var(--brand), var(--violet), var(--cyan), var(--coral));
+  box-shadow: 0 0 14px rgba(255, 61, 154, .55);
+  animation: blink 5s infinite;
+}
+
+/* 11. Progress and Settings: neon page titles and gradient stat numbers */
+.page h1 {
+  color: #dffffe;
+  text-shadow: 0 0 6px var(--cyan), 0 0 22px var(--cyan), 0 0 44px var(--violet);
+}
+.stat b {
+  background: linear-gradient(90deg, var(--brand), var(--coral));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* 12. Lesson intro and results overlays (the game canvas itself is NOT restyled) */
+.overlay {
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 38%, rgba(138, 77, 255, .30), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(255, 61, 154, .18), transparent 70%),
+    rgba(10, 6, 26, .96);
+}
+.panel h1 {
+  color: #dffffe;
+  text-shadow: 0 0 6px var(--cyan), 0 0 22px var(--cyan), 0 0 46px var(--violet);
+}
+.back-link { color: var(--cyan); }
+.back-link:hover, .back-link:focus-visible { background: rgba(53, 224, 224, .14); color: #dffffe; }
+.quit:hover, .quit:focus-visible { color: #fff; }
+.bar { background: rgba(255, 255, 255, .12); }
+.bar i { background: linear-gradient(90deg, var(--brand), var(--coral)); }
+.result-stars svg.on { filter: drop-shadow(0 0 10px rgba(255, 179, 71, .75)); }
+.tally div { border: 1.5px solid var(--line); background: rgba(255, 255, 255, .04); }
+

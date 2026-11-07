@@ -21,7 +21,7 @@
           </feTurbulence>
           <feDisplacementMap in="SourceGraphic" in2="n" scale="70" xChannelSelector="R" yChannelSelector="G" result="d"/>
           <feColorMatrix in="d" type="hueRotate" values="0">
-            <animate attributeName="values" dur="28s" repeatCount="indefinite" values="0;360"/>
+            <animate attributeName="values" dur="30s" repeatCount="indefinite" values="0;35;0;-20;0"/>
           </feColorMatrix>
         </filter>
         <radialGradient id="ig">
@@ -49,6 +49,14 @@
     </svg>
   </div>
   <div id="ret" class="ret" aria-hidden="true"></div>
+  <header id="site-nav" class="site-nav">
+    <a class="sn-logo" href="#/">EyeQuest</a>
+    <nav class="sn-links" aria-label="Main">
+      <a href="#how" data-scroll=".pillars">How it works</a>
+      <a href="#about" data-scroll=".notice">About</a>
+      <a href="#/new" class="sn-cta" data-go="start">Get started</a>
+    </nav>
+  </header>
 
   <div id="app"></div>
   <noscript><p style="padding:24px">EyeQuest Arcade needs JavaScript turned on.</p></noscript>
@@ -60,3 +68,4 @@
   <script src="js/iris.js"></script>
 </body>
 </html>
+
